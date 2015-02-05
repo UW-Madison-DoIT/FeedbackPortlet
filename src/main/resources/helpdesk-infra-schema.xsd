@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="https://kb.wisc.edu/infra/interfaces/CallTransactions" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://kb.wisc.edu/infra/interfaces/CallTransactions">
+		
+	<!-- 
+	This is not an official document.
+	The Infra Web Service (http://kb.wisc.edu/infra/interfaces/CallTransactions.php?wsdl) does not define a proper schema.
+	This document attempts to describe the input and output elements used in the Infra Web Service and is used
+	by JAXB within the FeedbackPortlet.
+	 -->	
+	<xs:element name="CallCreate">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="1" minOccurs="1" name="src" type="xs:string"/>
+				<xs:element maxOccurs="1" minOccurs="1" name="customer_netid" type="xs:string"/>
+				<xs:element maxOccurs="1" minOccurs="1" name="call_service" type="xs:string"/>
+				<xs:element maxOccurs="1" minOccurs="1" name="call_type" type="xs:string"/>
+				<xs:element maxOccurs="1" minOccurs="1" name="call_ref" type="xs:string"/>
+				<xs:element maxOccurs="1" minOccurs="1" name="call_description" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CallCreateResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="1" minOccurs="1" name="return" type="xs:integer"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="CallAppendNote">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="1" minOccurs="1" name="src" type="xs:string"/>
+				<xs:element maxOccurs="1" minOccurs="1" name="call_number" type="xs:string"/>
+				<xs:element maxOccurs="1" minOccurs="1" name="note_text" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CallAppendNoteResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="1" minOccurs="1" name="return" type="xs:integer"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="CallForward">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="1" minOccurs="1" name="src" type="xs:string"/>
+				<xs:element maxOccurs="1" minOccurs="1" name="call_number" type="xs:string"/>
+				<xs:element maxOccurs="1" minOccurs="1" name="group" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CallForwardResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="1" minOccurs="1" name="return" type="xs:integer"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+				
+</xs:schema>

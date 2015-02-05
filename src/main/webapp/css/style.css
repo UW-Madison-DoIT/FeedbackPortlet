@@ -1,0 +1,46 @@
+body { 
+	font-family: "arial", "helvetica", "sans serif"; 
+	font-size: 9pt;
+	margin: 10px;
+	background-color: #FBF4EA;
+}
+
+a:link {
+  	text-decoration: none;
+  	color: #990000;
+  	font-size: 100%;
+}
+
+a:visited {
+  	text-decoration:none;
+  	color: #990000;
+  	font-size: 100%;
+}
+
+a:active {
+  	text-decoration:none;
+  	color: #990000;
+  	font-size: 100%;
+}
+
+a:hover {
+  	/* text-decoration:underline; */
+  	color: #CC9933;
+  	font-size: 100%;
+}
+	
+.header {
+	background-color: #990000;
+}
+	
+.content {
+
+}
+
+.form {
+
+}
+
+.error-message {
+    color: #FF0000;
+}

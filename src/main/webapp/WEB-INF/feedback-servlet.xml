@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans	xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+        
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass"><value>org.springframework.web.servlet.view.JstlView</value></property>
+        <property name="prefix"><value>/WEB-INF/jsp/</value></property>
+        <property name="suffix"><value>.jsp</value></property>
+    </bean>
+
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">feedback_external-error</prop>
+			</props>
+		</property>
+	</bean>
+        
+	<bean id="externalFeedbackFormController" class="edu.wisc.my.portlets.feedback.web.ExternalFeedbackFormController">
+		<property name="sessionForm"><value>true</value></property>
+		<property name="commandClass"><value>edu.wisc.my.portlets.feedback.beans.Feedback</value></property>
+		<property name="formView"><value>feedback_external-form</value></property>
+		<property name="successView"><value>feedback_external-success</value></property>
+
+         <property name="feedbackSender" ref="feedbackSender"/>       
+		<property name="validator">
+			<bean class="edu.wisc.my.portlets.feedback.beans.FeedbackValidator"/>
+		</property>
+                
+    </bean>
+    
+	<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/*">externalFeedbackFormController</prop>     
+			</props>
+		</property>
+	</bean>
+        
+</beans>

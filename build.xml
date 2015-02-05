@@ -1,0 +1,5 @@
+<project name="Feedback Portlet" basedir=".">
+    <property file="${basedir}/build.properties" />
+    
+    <import file="${basedir}/bootstrap/mvn_build.xml" />
+</project>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+        
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>  
+                <value>/WEB-INF/context.properties</value>
+            </list>
+        </property>
+    </bean>
+
+	<!--  BEGIN email based FeedbackSender configuration -->
+	<bean id="feedbackSender"
+		class="edu.wisc.my.portlets.feedback.dao.EmailFeedbackSenderImpl">
+		<property name="mailSender" ref="mailSender"/>
+		<property name="messageFormatter" ref="messageFormatter"/>
+	</bean>
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${smtpHost}" />
+	</bean>
+  	<bean id="messageFormatter" class="edu.wisc.my.portlets.feedback.dao.ClarifyFeedbackMessageFormatterImpl">
+  		<property name="targetEmail" value="${targetEmail}"/>
+  		<property name="fromAddress" value="${fromAddress}"/>
+  	</bean>
+  	<!-- END email based FeedbackSender configuration -->
+  	
+  	
+  	
+  	<!-- BEGIN Infra Web Service based FeedbackSender configuration -->
+	<!--
+		uncomment me to use the Infra Web Service messageSender implementation
+		Note: per Wei-Zhong there is only one WSDL url for test and production
+	-->
+	<!--  
+	<bean id="feedbackSender"
+		class="edu.wisc.my.portlets.feedback.dao.InfraWebServiceFeedbackSenderImpl">
+		<property name="infraSrc" value="MyUW" />
+		<property name="callType" value="Feedback" />
+		<property name="wsdlResource">
+			<bean class="org.springframework.core.io.UrlResource">
+				<constructor-arg>
+					<value>
+						http://kb.wisc.edu/infra/interfaces/CallTransactions.php?wsdl
+					</value>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	-->
+	<!-- END Infra Web Service backed FeedbackSender configuration -->
+	
+</beans>
