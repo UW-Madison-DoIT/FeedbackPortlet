@@ -149,7 +149,7 @@ form.userAgent.value=navigator.userAgent;
       <div class="col-xs-12 col-sm-6 general-feedback">
         <h2>Give General Feedback</h2>
         <p>If you have an idea for a new feature or an improvement, share your ideas using <a href="https://myuw.ideascale.com/a/panel.do" target="_blank">MyVoice</a>.</p>
-        <p>Use the form below to ask a question or report a problem. Please note that your feedback is not anonymous. This is the test commit from git to prove that this works.  From Tim Vertein.</p>
+        <p>Use the form below to ask a question or report a problem. Please note that your feedback is not anonymous.</p>
         <form method="post" action="<portlet:actionURL/>" onsubmit="browserInfo(this)">
             <spring:bind path="command.name">
             <input type="hidden" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>" />
