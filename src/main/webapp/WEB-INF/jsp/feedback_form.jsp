@@ -2,7 +2,6 @@
 <jsp:directive.include file="/WEB-INF/jsp/include-portlet.jsp"/>
 
 <style>
-
 .feedback-portlet .my-voice-container{
     display:table;
     background-color:#eee;
@@ -11,19 +10,16 @@
     margin-top:15px;
     margin-bottom:15px;
 }
-
 .feedback-portlet .my-voice-container span{
     vertical-align: middle;
     display:table-cell;
 }
-
 .feedback-portlet .my-voice-container span img{
     vertical-align:middle;
     display:table-cell;
     margin-left:15px;
     margin-right:15px;
 }
-
 .feedback-portlet .btn-share-ideas {
   font-weight:100;
   font-size:1.4em;
@@ -84,14 +80,7 @@
 }
 
 </style>
-<script language="JavaScript"><!--
-function browserInfo(form) {
-form.browserName.value=navigator.appName;
-form.browserVersion.value=navigator.appVersion;
-form.platform.value=navigator.platform;
-form.userAgent.value=navigator.userAgent;
-}
-// --></script>
+
 
 <div class='feedback-portlet'>
   <div class='container-fluid'>
