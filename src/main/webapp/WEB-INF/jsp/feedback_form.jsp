@@ -2,65 +2,33 @@
 <jsp:directive.include file="/WEB-INF/jsp/include-portlet.jsp"/>
 
 <style>
-.feedback-portlet .my-voice {
-  border-radius: 4px;
-  text-align:center;
-  padding:30px;
-  margin:10px 0px;
-  background-color:#fff;
-  border:1px solid #b70101;
+
+.feedback-portlet .my-voice-container{
+    display:table;
+    background-color:#eee;
+    width: 100%;
+    height:140px;
+    margin-top:15px;
+    margin-bottom:15px;
 }
-.feedback-portlet .my-voice h1 {
-  font-size:3em;
-  color:#b70101;
-  display:inline;
-  border-bottom:0px solid transparent;
+
+.feedback-portlet .my-voice-container span{
+    vertical-align: middle;
+    display:table-cell;
 }
-.feedback-portlet .my-voice h1.light {
-  font-weight:100;
+
+.feedback-portlet .my-voice-container span img{
+    vertical-align:middle;
+    display:table-cell;
+    margin-left:15px;
+    margin-right:15px;
 }
-.feedback-portlet .my-voice h1.heavy {
-  font-weight:600;
-}
-.feedback-portlet .my-voice img {
-  width: 40px;
-  display:inline;
-  margin:-20px 10px 0px;
-}
-.feedback-portlet .my-voice h2 {
-  margin-top:10px;
-  font-size:1.4em;
-  font-weight:100;
-}
-.feedback-portlet .icons h2 {
-  color:#b70101;
-  font-size:1.7em;
-  font-weight:100;
-}
-.feedback-portlet .icons i {
-  color:#b70101;
-  font-size:3em;
-  text-align:center;
-  padding:0;
-}
-.feedback-portlet .icons li {
-  display:inline-block;
-  text-align:center;
-  margin:0px 15px;
-}
-.feedback-portlet .icons li:before {
-  content:"";
-}
-.feedback-portlet .icons ul {
-  padding-left:0;
-  text-align:center;
-  margin-top:20px;
-}
+
 .feedback-portlet .btn-share-ideas {
   font-weight:100;
   font-size:1.4em;
   background-color:#b70101;
-  padding:15px 50px;
+  padding:8px 30px;
   margin:10px 0px;
   color:#fff !important;
   border-radius:4px;
@@ -69,6 +37,7 @@
   cursor:pointer;
   transition:0.1s ease-in-out;
   position:relative;
+  
 }
 .feedback-portlet .btn-share-ideas:hover {
   transform: translateY(2px);
@@ -108,9 +77,6 @@
   font-size:1.8em;
   color:#b70101;
 }
-.feedback-portlet .btn-gen-feedback {
-  padding:8px 30px;
-}
 @media (max-width:768px) {
   .feedback-portlet .btn-share-ideas {
     padding:6px 12px;
@@ -129,27 +95,9 @@ form.userAgent.value=navigator.userAgent;
 
 <div class='feedback-portlet'>
   <div class='container-fluid'>
-    <div class='row'>
-      <div class='col-xs-12 my-voice'>
-        <div class="my-voice-title">
-          <span><h1 class="light">MyUW</h1><img src="http://umark.wisc.edu/brand/templates-and-downloads/downloads/web/uwcrest_web_sm_fpo.png"><h1 class="heavy">MyVoice</h1></span>
-        </div>
-        <h2>Tell us how we could improve your MyUW experience.</h2>
-        <div class="icons">
-          <ul>
-            <li><i class="fa fa-lightbulb-o"></i><h2>Share</h2></li>
-            <li><i class="fa fa-comments-o"></i><h2>Discuss</h2></li>
-            <li><i class="fa fa-thumbs-o-up"></i><h2>Vote</h2></li>
-          </ul>
-        </div>
-        <a href="https://myuw.ideascale.com/a/panel.do" target="_blank" class="btn btn-primary btn-large btn-share-ideas">Share your ideas <i class="fa fa-arrow-right"></i></a>
-      </div>
-    </div>
     <div class="row">
       <div class="col-xs-12 col-sm-6 general-feedback">
-        <h2>Give General Feedback</h2>
-        <p>If you have an idea for a new feature or an improvement, share your ideas using <a href="https://myuw.ideascale.com/a/panel.do" target="_blank">MyVoice</a>.</p>
-        <p>Use the form below to ask a question or report a problem. Please note that your feedback is not anonymous.</p>
+        <h2>Give feedback</h2>
         <form method="post" action="<portlet:actionURL/>" onsubmit="browserInfo(this)">
             <spring:bind path="command.name">
             <input type="hidden" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>" />
@@ -168,7 +116,7 @@ form.userAgent.value=navigator.userAgent;
             <input type="hidden" name="<c:out value="${status.expression}"/>" value="UW Feedback" />
             </spring:bind>
             <spring:bind path="command.details">
-            <p>Provide us with as much detail as possible:</p> <font color="#FF0000"><c:out value="${status.errorMessage}"/></font>
+            <c:out value="${status.errorMessage}"/></font>
             <textarea wrap="physical" rows="8" style='width: 100%;' class='form-control' name="<c:out value="${status.expression}" />"><c:out value="${status.value}"/></textarea>
             </spring:bind>
             </p>
@@ -186,34 +134,24 @@ form.userAgent.value=navigator.userAgent;
             <input type="hidden" name="<c:out value="${status.expression}"/>" />
             </spring:bind>
 
-            <p style='font-size: smaller;'>
-               (limit is 1200 characters)
-            </p>
-
-            <p class='reply'>
-                <strong>Do you want a reply?</strong><br/>
-                <spring:bind path="command.reply">
-                    <input type="radio" name="<c:out value="${status.expression}" />" value="Yes"> Yes, I would like someone to follow up with me.</input><br/>
-                    <input type="radio" name="<c:out value="${status.expression}"/>" value="No"> No thanks.</input>
-                </spring:bind>
+            <p>
+                Your name will be submitted with your feedback.
             </p>
             <p>
-            <input type="submit" value="Send message" class='btn btn-primary btn-share-ideas btn-gen-feedback' />
+            <input type="submit" value="Send" class='btn btn-primary btn-share-ideas' />
             </p>
         </form>
       </div>
       <div class="col-xs-12 col-sm-6 general-help">
-        <h2>Need Help?</h2>
+        <h2>Get help</h2>
           <a href='/portal/p/campus-chat-connections'><i class="fa fa-comments-o"></i>Live chat</a>
           <a href='http://helpdesk.doit.wisc.edu/page.php?id=1' target='_blank'><i class="fa fa-phone"></i>Call Us</a>
           <a href='https://kb.wisc.edu/myuw/' target='_blank'><i class="fa fa-question"></i>How-to Info</a>
       </div>
     </div>
+    <div class="my-voice-container">
+        <span> <img src="<%=renderRequest.getContextPath()%>/img/myuw-myvoice-logo.png"/></span>
+        <span> MyUW MyVoice closed on March 30.  We received hundreds of ideas and are using them to enhance the site.  Thanks to everyone who contributed, and we hope you'll keep giving your feedback on MyUW!</span>
+    </div>
   </div>
 </div>
-
-<!--                 <div class="row"> -->
-<!--                     <div class="col-xs-12 instruction"> -->
-<!--                         Otherwise, please use the form below to ask a question, report a problem, or suggest an improvement. Please note that your feedback is not anonymous. -->
-<!--                     </div> -->
-<!--                 </div> -->
