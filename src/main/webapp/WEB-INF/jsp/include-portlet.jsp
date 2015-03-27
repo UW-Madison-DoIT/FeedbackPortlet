@@ -3,3 +3,5 @@
 <%@ taglib prefix="portlet" uri="http://java.sun.com/portlet" %>
 
 <portlet:defineObjects/>
+
+<link href="<%=renderRequest.getContextPath()%>/css/style.css" rel="stylesheet"/>
