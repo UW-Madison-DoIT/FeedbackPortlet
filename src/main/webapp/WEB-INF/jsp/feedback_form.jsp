@@ -5,7 +5,7 @@
   <div class='container-fluid'>
     <div class="row">
       <div class="col-xs-12 col-sm-6 general-feedback">
-        <h2>Give feedback</h2>
+        <h2 tabindex="0" aria-label="Give feedback">Give feedback</h2>
         <form method="post" action="<portlet:actionURL/>" onsubmit="browserInfo(this)">
             <spring:bind path="command.name">
             <input type="hidden" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>" />
@@ -25,7 +25,7 @@
             </spring:bind>
             <spring:bind path="command.details">
             <c:out value="${status.errorMessage}"/></font>
-            <textarea wrap="physical" rows="8" style='width: 100%;' class='form-control' name="<c:out value="${status.expression}" />"><c:out value="${status.value}"/></textarea>
+            <textarea aria-label="Give feedback text edited box" wrap="physical" rows="8" style='width: 100%;' class='form-control' name="<c:out value="${status.expression}" />"><c:out value="${status.value}"/></textarea>
             </spring:bind>
             </p>
 
@@ -46,12 +46,12 @@
                 Your name will be submitted with your feedback.
             </p>
             <p>
-            <input type="submit" value="Send" class='btn btn-primary btn-share-ideas' />
+            <input aria-label="send button" type="submit" value="Send" class='btn btn-primary btn-share-ideas' />
             </p>
         </form>
       </div>
       <div class="col-xs-12 col-sm-6 general-help">
-        <h2>Get help</h2>
+        <h2 tabindex="0" aria-label="Get help">Get help</h2>
           <a href='/portal/p/campus-chat-connections'><i class="fa fa-comments-o"></i>Live chat</a>
           <a href='http://helpdesk.doit.wisc.edu/page.php?id=1' target='_blank'><i class="fa fa-phone"></i>Call Us</a>
           <a href='https://kb.wisc.edu/myuw/' target='_blank'><i class="fa fa-question"></i>How-to Info</a>
