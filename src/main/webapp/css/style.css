@@ -4,25 +4,6 @@
   margin: 10px;
 }
 
-.feedback-portlet .my-voice-container{
-    display:table;
-    background-color:#eee;
-    width: 100%;
-    height:140px;
-    margin-top:15px;
-    margin-bottom:15px;
-}
-.feedback-portlet .my-voice-container span{
-    vertical-align: middle;
-    display:table-cell;
-}
-.feedback-portlet .my-voice-container span img{
-    vertical-align:middle;
-    display:table-cell;
-    margin-left:15px;
-    margin-right:15px;
-}
-
 .feedback-portlet .info-area,
 .feedback-portlet .general-help a{
     background-color:#eee;
