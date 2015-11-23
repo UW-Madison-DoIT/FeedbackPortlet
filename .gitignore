@@ -1,3 +1,5 @@
 /target
 .project
 src/main/webapp/WEB-INF/context.properties
+.classpath
+.settings/

@@ -19,6 +19,9 @@
             <spring:bind path="command.emailAddress">
             <input type="hidden" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>" />
             </spring:bind>
+            <spring:bind path="command.referrer">
+            <input type="hidden" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>" />
+            </spring:bind>
             <p>
             <spring:bind path="command.subject">
             <input type="hidden" name="<c:out value="${status.expression}"/>" value="UW Feedback" />
