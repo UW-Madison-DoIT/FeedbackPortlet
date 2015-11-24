@@ -65,6 +65,7 @@ public class Feedback implements Serializable {
     private String platform;
     private String reply;
     private String profile;
+    private String referrer;
     
     /**
      * @return Returns the campus.
@@ -264,5 +265,17 @@ public class Feedback implements Serializable {
      */
     public void setProfile(String profile) {
         this.profile = profile;
+    }
+    /**
+     * @return the referrer
+     */
+    public String getReferrer() {
+        return referrer;
+    }
+    /**
+     * @param referrer the referrer to set
+     */
+    public void setReferrer(String referrer) {
+        this.referrer = referrer;
     }
 }

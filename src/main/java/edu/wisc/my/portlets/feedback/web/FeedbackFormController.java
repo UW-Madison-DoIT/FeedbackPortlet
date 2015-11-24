@@ -35,12 +35,15 @@
 *******************************************************************************/
 package edu.wisc.my.portlets.feedback.web;
 
+import org.apache.http.HttpHeaders;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.portlet.mvc.SimpleFormController;
 
 import edu.wisc.my.portlets.feedback.beans.Feedback;
 import edu.wisc.my.portlets.feedback.dao.FeedbackSender;
+
 import java.util.Map;
+
 import javax.portlet.PortletRequest;
 
 /**
@@ -76,10 +79,10 @@ public class FeedbackFormController extends SimpleFormController {
     @Override
     protected Object formBackingObject(PortletRequest request) throws Exception {
         final Feedback feedback = new Feedback();
-        
         feedback.setNetid(request.getRemoteUser());
         feedback.setHiddenNetid(request.getRemoteUser());
         
+        @SuppressWarnings("unchecked")
         final Map<String, String> userInfo = (Map<String, String>)request.getAttribute(PortletRequest.USER_INFO);
         
         final String displayName = userInfo.get("displayName");
@@ -101,7 +104,9 @@ public class FeedbackFormController extends SimpleFormController {
         }else{
             feedback.setProfile("Classic - Universality");
         }
-        
+
+        String referrer = request.getProperty(HttpHeaders.REFERER);
+        feedback.setReferrer(referrer);
         return feedback;
     }
     

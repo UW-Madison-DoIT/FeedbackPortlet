@@ -160,6 +160,10 @@ public class ClarifyFeedbackMessageFormatterImpl implements
         body.append("profile: ");
         body.append(null == feedback.getProfile() ? "<empty>" : feedback.getProfile());
         body.append("\n");
+        
+        body.append("referrer: ");
+        body.append(null == feedback.getReferrer() ? "<empty>" : feedback.getReferrer());
+        body.append("\n");
 
         message.setText(body.toString());
 
