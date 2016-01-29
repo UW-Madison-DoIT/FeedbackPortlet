@@ -59,3 +59,12 @@
     </div>
   </div>
 </div>
+
+<script language="JavaScript">
+ function browserInfo(form) {
+ form.browserName.value=navigator.appName;
+ form.browserVersion.value=navigator.appVersion;
+ form.platform.value=navigator.platform;
+ form.userAgent.value=navigator.userAgent;
+ }
+</script>
