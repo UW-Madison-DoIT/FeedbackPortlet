@@ -35,14 +35,19 @@
 *******************************************************************************/
 package edu.wisc.my.portlets.feedback.web;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpHeaders;
+
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.portlet.mvc.SimpleFormController;
-
+import javax.portlet.PortletPreferences;
 import edu.wisc.my.portlets.feedback.beans.Feedback;
 import edu.wisc.my.portlets.feedback.dao.FeedbackSender;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import java.util.Map;
+
+
 
 import javax.portlet.PortletRequest;
 
@@ -56,9 +61,13 @@ import javax.portlet.PortletRequest;
  * @version $Header: /apps/my/CVS/portlets/FeedbackPortlet/src/main/java/edu/wisc/my/portlets/feedback/web/FeedbackFormController.java,v 1.3 2014/10/31 18:32:48 vertein Exp $
  */
 public class FeedbackFormController extends SimpleFormController {
-
+	private Log logger = LogFactory.getLog(this.getClass());
 	private FeedbackSender feedbackSender;
-
+	
+	private String callLink = "callLink";
+	private String howToLink = "howToLink";
+	private PortletPreferences preferences;
+	
     /**
 	 * @param feedbackSender the feedbackSender to set
 	 */
@@ -78,10 +87,15 @@ public class FeedbackFormController extends SimpleFormController {
     }
     @Override
     protected Object formBackingObject(PortletRequest request) throws Exception {
-        final Feedback feedback = new Feedback();
+    	if(this.preferences == null){
+     	   this.preferences = request.getPreferences();
+        }
+    	
+    	final Feedback feedback = new Feedback();
         feedback.setNetid(request.getRemoteUser());
         feedback.setHiddenNetid(request.getRemoteUser());
-        
+
+       
         @SuppressWarnings("unchecked")
         final Map<String, String> userInfo = (Map<String, String>)request.getAttribute(PortletRequest.USER_INFO);
         
@@ -96,6 +110,9 @@ public class FeedbackFormController extends SimpleFormController {
         final String telephoneNumber = userInfo.get("telephoneNumber");
         feedback.setPhoneNumber(telephoneNumber);
         feedback.setHiddenPhoneNumber(telephoneNumber);
+        feedback.setChatLink(this.preferences.getValue("chatLink", null));
+        feedback.setCallLink(this.preferences.getValue("callLink", null));
+        feedback.setHowToLink((this.preferences.getValue("howToLink", null)));
         
         if(request.isUserInRole("ROLE_BETA_PROFILE")){
             feedback.setProfile("Beta");
@@ -107,6 +124,9 @@ public class FeedbackFormController extends SimpleFormController {
 
         String referrer = request.getProperty(HttpHeaders.REFERER);
         feedback.setReferrer(referrer);
+        
+
+        
         return feedback;
     }
     

@@ -4,6 +4,7 @@
 <div class='feedback-portlet'>
   <div class='container-fluid'>
     <div class="row">
+    <form method="post" action="<portlet:actionURL/>" onsubmit="browserInfo(this)">
       <div class="col-xs-12 col-sm-6 general-feedback">
         <h2 tabindex="0" aria-label="Give feedback">Give feedback</h2>
         <form method="post" action="<portlet:actionURL/>" onsubmit="browserInfo(this)">
@@ -51,11 +52,23 @@
             <p>
             <input aria-label="send button" type="submit" value="Send" class='btn btn-primary btn-share-ideas' />
             </p>
-        </form>
+        
       </div>
       <div class="col-xs-12 col-sm-6 general-help">
-        <jsp:directive.include file="/WEB-INF/jsp/include-righthand-links.jsp"/>
+        <h2>Get help ${chatLink}</h2>
+         <spring:bind path="command.chatLink">
+            <a href="<c:out value="${status.value}" />"><i class="fa fa-comments-o"></i>Live chat</a>
+        </spring:bind>
+        <spring:bind path="command.callLink">
+           <a href="<c:out value="${status.value}"/>" target='_blank'><i class="fa fa-phone"></i>Call us</a>
+        </spring:bind>
+        <spring:bind path="command.howToLink">
+         <a href="<c:out value="${status.value}"/>" target='_blank'><i class="fa fa-question"></i>How-to info</a>
+        </spring:bind>
       </div>
+      </form>
+     
+    </div>
     </div>
   </div>
 </div>
@@ -67,4 +80,4 @@
  form.platform.value=navigator.platform;
  form.userAgent.value=navigator.userAgent;
  }
-</script>
+ </script>
