@@ -7,7 +7,6 @@
     <form method="post" action="<portlet:actionURL/>" onsubmit="browserInfo(this)">
       <div class="col-xs-12 col-sm-6 general-feedback">
         <h2 tabindex="0" aria-label="Give feedback">Give feedback</h2>
-        <form method="post" action="<portlet:actionURL/>" onsubmit="browserInfo(this)">
             <spring:bind path="command.name">
             <input type="hidden" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>" />
             </spring:bind>
@@ -71,7 +70,7 @@
     </div>
     </div>
   </div>
-</div>
+
 
 <script language="JavaScript">
  function browserInfo(form) {

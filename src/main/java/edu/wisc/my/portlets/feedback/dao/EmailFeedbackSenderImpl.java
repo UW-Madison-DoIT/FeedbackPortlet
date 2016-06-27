@@ -60,7 +60,8 @@ public class EmailFeedbackSenderImpl implements FeedbackSender {
 	public void send(final Feedback feedback) throws FeedbackSubmissionException {
 		SimpleMailMessage mailMessage = messageFormatter.format(feedback);
 		try {
-			mailSender.send(mailMessage);
+			System.out.println("DO NOT COMMIT THIS");
+			//			mailSender.send(mailMessage);
 		} catch (MailException e) {
 			LOG.error("unable to send email for " + feedback, e);
 			throw new FeedbackSubmissionException(e);
