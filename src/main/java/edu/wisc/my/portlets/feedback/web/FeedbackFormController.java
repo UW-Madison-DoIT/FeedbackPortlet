@@ -59,8 +59,6 @@ import edu.wisc.my.portlets.feedback.dao.FeedbackSender;
 public class FeedbackFormController extends SimpleFormController {
 	private FeedbackSender feedbackSender;
 	
-	private PortletPreferences preferences;
-	
     /**
 	 * @param feedbackSender the feedbackSender to set
 	 */
@@ -82,15 +80,17 @@ public class FeedbackFormController extends SimpleFormController {
     protected Object formBackingObject(PortletRequest request) throws Exception {
     	
     	final Feedback feedback = new Feedback();
-    	
-    	if(this.preferences == null){
-     	   this.preferences = request.getPreferences();
-        }
+    	final PortletPreferences preferences = request.getPreferences();
+   
     	
     	if(preferences !=null){
-    		feedback.setChatLink(this.preferences.getValue("chatLink", null));
-            feedback.setCallLink(this.preferences.getValue("callLink", null));
-            feedback.setHowToLink((this.preferences.getValue("howToLink", null)));
+    		feedback.setChatLink(preferences.getValue("chatLink", null));
+            feedback.setCallLink(preferences.getValue("callLink", null));
+            feedback.setHowToLink((preferences.getValue("howToLink", null)));
+    	}else{
+    		feedback.setChatLink("/404.html");
+    		feedback.setCallLink("/404.html");
+    		feedback.setHowToLink("/404.html");
     	}
     	
     	
