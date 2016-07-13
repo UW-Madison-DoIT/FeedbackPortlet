@@ -80,17 +80,17 @@ public class FeedbackFormController extends SimpleFormController {
     protected Object formBackingObject(PortletRequest request) throws Exception {
     	
     	final Feedback feedback = new Feedback();
+    	
     	final PortletPreferences preferences = request.getPreferences();
-   
     	
     	if(preferences !=null){
-    		feedback.setChatLink(preferences.getValue("chatLink", null));
-            feedback.setCallLink(preferences.getValue("callLink", null));
-            feedback.setHowToLink((preferences.getValue("howToLink", null)));
+    		request.setAttribute("chatLink",(preferences.getValue("chatLink", "/404.html")));
+    		request.setAttribute("callLink",(preferences.getValue("callLink", "/404.html")));
+    		request.setAttribute("howToLink",(preferences.getValue("howToLink", "/404.html")));
     	}else{
-    		feedback.setChatLink("/404.html");
-    		feedback.setCallLink("/404.html");
-    		feedback.setHowToLink("/404.html");
+    		request.setAttribute("chatLink","/404.html");
+    		request.setAttribute("callLink","/404.html");
+    		request.setAttribute("howToLink","/404.html");
     	}
     	
     	

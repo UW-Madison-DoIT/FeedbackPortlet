@@ -66,12 +66,7 @@ public class Feedback implements Serializable {
     private String reply;
     private String profile;
     private String referrer;
-    
-    //Customizable Links
-    private String chatLink;
-    private String callLink;
-    private String howToLink;
-    
+       
     /**
      * @return Returns the campus.
      */
@@ -282,29 +277,5 @@ public class Feedback implements Serializable {
      */
     public void setReferrer(String referrer) {
         this.referrer = referrer;
-    }
-    
-    public String getChatLink(){
-    	return this.chatLink;
-    }
-    
-    public void setChatLink(String chatLink){
-    	this.chatLink = chatLink;
-    }
-    
-    public String getCallLink(){
-    	return this.callLink;
-    }
-    
-    public void setCallLink(String callLink){
-    	this.callLink = callLink;
-    }
-    
-    public String getHowToLink(){
-    	return this.howToLink;
-    }
-    
-    public void setHowToLink(String howToLink){
-    	this.howToLink = howToLink;
     }
 }

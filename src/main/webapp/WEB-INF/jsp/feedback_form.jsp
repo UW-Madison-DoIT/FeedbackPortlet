@@ -54,15 +54,9 @@
        </div>
        <div class="col-xs-12 col-sm-6 general-help">
           <h2>Get help</h2>
-          <spring:bind path="command.chatLink">
-             <a href="<c:out value="${status.value}" />"><i class="fa fa-comments-o"></i>Live chat</a>
-          </spring:bind>
-          <spring:bind path="command.callLink">
-             <a href="<c:out value="${status.value}"/>" target='_blank'><i class="fa fa-phone"></i>Call us</a>
-          </spring:bind>
-          <spring:bind path="command.howToLink">
-             <a href="<c:out value="${status.value}"/>" target='_blank'><i class="fa fa-question"></i>How-to info</a>
-          </spring:bind>
+             <a href="<c:out value="${chatLink}" />"><i class="fa fa-comments-o"></i>Live chat</a>
+             <a href="<c:out value="${callLink}"/>" target='_blank'><i class="fa fa-phone"></i>Call us</a>
+             <a href="<c:out value="${howToLink}"/>" target='_blank'><i class="fa fa-question"></i>How-to info</a>
         </div>
        </form>
     </div>
