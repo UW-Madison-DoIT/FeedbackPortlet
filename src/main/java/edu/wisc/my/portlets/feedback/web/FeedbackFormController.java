@@ -84,13 +84,13 @@ public class FeedbackFormController extends SimpleFormController {
     	final PortletPreferences preferences = request.getPreferences();
     	
     	if(preferences !=null){
-    		request.setAttribute("chatLink",(preferences.getValue("chatLink", "/404.html")));
-    		request.setAttribute("callLink",(preferences.getValue("callLink", "/404.html")));
-    		request.setAttribute("howToLink",(preferences.getValue("howToLink", "/404.html")));
+    		request.setAttribute("chatLink",(preferences.getValue("chatLink", null)));
+    		request.setAttribute("callLink",(preferences.getValue("callLink", null)));
+    		request.setAttribute("howToLink",(preferences.getValue("howToLink", null)));
     	}else{
-    		request.setAttribute("chatLink","/404.html");
-    		request.setAttribute("callLink","/404.html");
-    		request.setAttribute("howToLink","/404.html");
+    		request.setAttribute("chatLink",null);
+    		request.setAttribute("callLink",null);
+    		request.setAttribute("howToLink",null);
     	}
     	
     	

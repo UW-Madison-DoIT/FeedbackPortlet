@@ -9,9 +9,9 @@
         </div>
       </div>
       <div class="col-xs-12 col-sm-6 general-help">
-           <a href="<c:out value="${chatLink}" />"><i class="fa fa-comments-o"></i>Live chat</a>
-           <a href="<c:out value="${callLink}"/>" target='_blank'><i class="fa fa-phone"></i>Call us</a>
-           <a href="<c:out value="${howToLink}"/>" target='_blank'><i class="fa fa-question"></i>How-to info</a>
+           <c:if test="${chatLink != 'null'}"><a href="<c:out value="${chatLink}" />"><i class="fa fa-comments-o"></i>Live chat</a></c:if>
+             <c:if test="${callLink != 'null'}"><a href="<c:out value="${callLink}"/>" target='_blank'><i class="fa fa-phone"></i>Call us</a></c:if>
+             <c:if test="${howToLink != 'null'}"><a href="<c:out value="${howToLink}"/>" target='_blank'><i class="fa fa-question"></i>How-to info</a></c:if>
     </div>
   </div>
 </div>
