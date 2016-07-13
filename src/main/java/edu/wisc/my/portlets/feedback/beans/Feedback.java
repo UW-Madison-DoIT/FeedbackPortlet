@@ -66,7 +66,7 @@ public class Feedback implements Serializable {
     private String reply;
     private String profile;
     private String referrer;
-    
+       
     /**
      * @return Returns the campus.
      */

@@ -35,16 +35,17 @@
 *******************************************************************************/
 package edu.wisc.my.portlets.feedback.web;
 
+import java.util.Map;
+
+import javax.portlet.PortletPreferences;
+import javax.portlet.PortletRequest;
+
 import org.apache.http.HttpHeaders;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.portlet.mvc.SimpleFormController;
 
 import edu.wisc.my.portlets.feedback.beans.Feedback;
 import edu.wisc.my.portlets.feedback.dao.FeedbackSender;
-
-import java.util.Map;
-
-import javax.portlet.PortletRequest;
 
 /**
  * Spring PortletMVC FormController for feedback form.
@@ -56,9 +57,8 @@ import javax.portlet.PortletRequest;
  * @version $Header: /apps/my/CVS/portlets/FeedbackPortlet/src/main/java/edu/wisc/my/portlets/feedback/web/FeedbackFormController.java,v 1.3 2014/10/31 18:32:48 vertein Exp $
  */
 public class FeedbackFormController extends SimpleFormController {
-
 	private FeedbackSender feedbackSender;
-
+	
     /**
 	 * @param feedbackSender the feedbackSender to set
 	 */
@@ -73,15 +73,31 @@ public class FeedbackFormController extends SimpleFormController {
     @Override
     protected void doSubmitAction(Object command) throws Exception {
         Feedback feedback = (Feedback) command;
-        
+
         feedbackSender.send(feedback);
     }
     @Override
     protected Object formBackingObject(PortletRequest request) throws Exception {
-        final Feedback feedback = new Feedback();
+    	
+    	final Feedback feedback = new Feedback();
+    	
+    	final PortletPreferences preferences = request.getPreferences();
+    	
+    	if(preferences !=null){
+    		request.setAttribute("chatLink",(preferences.getValue("chatLink", null)));
+    		request.setAttribute("callLink",(preferences.getValue("callLink", null)));
+    		request.setAttribute("howToLink",(preferences.getValue("howToLink", null)));
+    	}else{
+    		request.setAttribute("chatLink",null);
+    		request.setAttribute("callLink",null);
+    		request.setAttribute("howToLink",null);
+    	}
+    	
+    	
         feedback.setNetid(request.getRemoteUser());
         feedback.setHiddenNetid(request.getRemoteUser());
-        
+
+       
         @SuppressWarnings("unchecked")
         final Map<String, String> userInfo = (Map<String, String>)request.getAttribute(PortletRequest.USER_INFO);
         
@@ -97,6 +113,7 @@ public class FeedbackFormController extends SimpleFormController {
         feedback.setPhoneNumber(telephoneNumber);
         feedback.setHiddenPhoneNumber(telephoneNumber);
         
+        
         if(request.isUserInRole("ROLE_BETA_PROFILE")){
             feedback.setProfile("Beta");
         }else if(request.isUserInRole("ROLE_UNIVERSALITY_MOBILE_PROFILE")){
@@ -107,6 +124,9 @@ public class FeedbackFormController extends SimpleFormController {
 
         String referrer = request.getProperty(HttpHeaders.REFERER);
         feedback.setReferrer(referrer);
+        
+
+        
         return feedback;
     }
     

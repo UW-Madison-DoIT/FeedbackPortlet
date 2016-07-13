@@ -4,9 +4,9 @@
 <div class='feedback-portlet'>
   <div class='container-fluid'>
     <div class="row">
+      <form method="post" action="<portlet:actionURL/>" onsubmit="browserInfo(this)">
       <div class="col-xs-12 col-sm-6 general-feedback">
         <h2 tabindex="0" aria-label="Give feedback">Give feedback</h2>
-        <form method="post" action="<portlet:actionURL/>" onsubmit="browserInfo(this)">
             <spring:bind path="command.name">
             <input type="hidden" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>" />
             </spring:bind>
@@ -50,15 +50,19 @@
             </p>
             <p>
             <input aria-label="send button" type="submit" value="Send" class='btn btn-primary btn-share-ideas' />
-            </p>
-        </form>
-      </div>
-      <div class="col-xs-12 col-sm-6 general-help">
-        <jsp:directive.include file="/WEB-INF/jsp/include-righthand-links.jsp"/>
-      </div>
+            </p>  
+       </div>
+       <div class="col-xs-12 col-sm-6 general-help">
+          <h2>Get help</h2>
+             <c:if test="${chatLink != 'null'}"><a href="<c:out value="${chatLink}" />"><i class="fa fa-comments-o"></i>Live chat</a></c:if>
+             <c:if test="${callLink != 'null'}"><a href="<c:out value="${callLink}"/>" target='_blank'><i class="fa fa-phone"></i>Call us</a></c:if>
+             <c:if test="${howToLink != 'null'}"><a href="<c:out value="${howToLink}"/>" target='_blank'><i class="fa fa-question"></i>How-to info</a></c:if>
+        </div>
+       </form>
     </div>
   </div>
 </div>
+
 
 <script language="JavaScript">
  function browserInfo(form) {
@@ -67,4 +71,5 @@
  form.platform.value=navigator.platform;
  form.userAgent.value=navigator.userAgent;
  }
-</script>
+ </script>
+ 
