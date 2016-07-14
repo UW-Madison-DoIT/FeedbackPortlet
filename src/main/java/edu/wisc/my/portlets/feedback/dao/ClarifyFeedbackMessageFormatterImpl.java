@@ -77,7 +77,13 @@ public class ClarifyFeedbackMessageFormatterImpl implements
     public SimpleMailMessage format(Feedback feedback) {
         SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setTo(targetEmail);
+        if(feedback.getFeedbackResponseEmail() != null){
+        	message.setTo(feedback.getFeedbackResponseEmail());
+        }else{
+        	message.setTo(targetEmail);
+        }
+        
+        
         message.setFrom(fromAddress);
 
         message.setSubject("CALL_CREATE"+" "+feedback.getSubject());

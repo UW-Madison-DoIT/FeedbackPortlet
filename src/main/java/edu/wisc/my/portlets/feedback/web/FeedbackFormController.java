@@ -84,9 +84,11 @@ public class FeedbackFormController extends SimpleFormController {
     	final PortletPreferences preferences = request.getPreferences();
     	
     	if(preferences !=null){
-    		request.setAttribute("chatLink",(preferences.getValue("chatLink", null)));
-    		request.setAttribute("callLink",(preferences.getValue("callLink", null)));
+    		request.setAttribute("chatLink",(preferences.getValue("chatLink", "null")));
+    		request.setAttribute("callLink",(preferences.getValue("callLink", "null")));
     		request.setAttribute("howToLink",(preferences.getValue("howToLink", null)));
+            feedback.setFeedbackResponseEmail(preferences.getValue("feedbackResponseEmail", null));
+     
     	}else{
     		request.setAttribute("chatLink",null);
     		request.setAttribute("callLink",null);
@@ -112,6 +114,8 @@ public class FeedbackFormController extends SimpleFormController {
         final String telephoneNumber = userInfo.get("telephoneNumber");
         feedback.setPhoneNumber(telephoneNumber);
         feedback.setHiddenPhoneNumber(telephoneNumber);
+        
+        
         
         
         if(request.isUserInRole("ROLE_BETA_PROFILE")){
