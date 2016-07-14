@@ -86,13 +86,13 @@ public class FeedbackFormController extends SimpleFormController {
     	if(preferences !=null){
     		request.setAttribute("chatLink",(preferences.getValue("chatLink", "null")));
     		request.setAttribute("callLink",(preferences.getValue("callLink", "null")));
-    		request.setAttribute("howToLink",(preferences.getValue("howToLink", null)));
-            feedback.setFeedbackResponseEmail(preferences.getValue("feedbackResponseEmail", null));
+    		request.setAttribute("howToLink",(preferences.getValue("howToLink", "null")));
+            feedback.setFeedbackResponseEmail(preferences.getValue("feedbackResponseEmail", "null"));
      
     	}else{
-    		request.setAttribute("chatLink",null);
-    		request.setAttribute("callLink",null);
-    		request.setAttribute("howToLink",null);
+    		request.setAttribute("chatLink","null");
+    		request.setAttribute("callLink","null");
+    		request.setAttribute("howToLink","null");
     	}
     	
     	
