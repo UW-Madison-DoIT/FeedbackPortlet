@@ -57,6 +57,7 @@ public class Feedback implements Serializable {
     private String hiddenPhoneNumber;
     private String hiddenEmailAddress;
     private String campus;
+    private String feedbackResponseEmail;
     private String subject;
     private String details;
     private String userAgent;
@@ -150,6 +151,8 @@ public class Feedback implements Serializable {
     public void setHiddenEmailAddress(final String emailAddress) {
         this.hiddenEmailAddress = emailAddress;
     }
+    
+    
     /**
      * @return Returns the name.
      */
@@ -278,4 +281,18 @@ public class Feedback implements Serializable {
     public void setReferrer(String referrer) {
         this.referrer = referrer;
     }
+    
+    /**
+     * @return the campus-specific email address. Set in portlet preferences.
+     */
+	public String getFeedbackResponseEmail() {
+		return feedbackResponseEmail;
+	}
+	
+	/**
+     * @param feedbackResponseEmail the email address to which feedback will be directed
+     */
+	public void setFeedbackResponseEmail(String feedbackResponseEmail) {
+		this.feedbackResponseEmail = feedbackResponseEmail;
+	}
 }
