@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <parent>
-        <groupId>edu.wisc.doit.code</groupId>
-        <artifactId>shared-tools-uw-parent</artifactId>
-        <version>7</version>
+      <groupId>edu.wisc.my</groupId>
+      <artifactId>myuw-bridge-parent</artifactId>
+      <version>5</version>
     </parent>
-    
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>edu.wisc.my.portlet</groupId>
     <artifactId>FeedbackPortlet</artifactId>
@@ -15,22 +15,21 @@
 
     <name>Feedback Portlet</name>
     <description>Portlet that provides a UI for submitting feedback cases.</description>
-    
+
     <repositories>
-        <repository>
-            <id>code.doit-uw-releases</id>
-            <name>code.doit-uw-releases</name>
-            <url>https://code.doit.wisc.edu/maven/content/repositories/uw-releases/</url>
-        </repository>
+      <repository>
+          <id>myuw-releases</id>
+          <url>https://artifacts.doit.wisc.edu/artifactory/myuw-maven-local-release/</url>
+      </repository>
     </repositories>
-    
+
     <scm>
         <connection>scm:git:git://github.com/UW-Madison-DoIT/FeedbackPortlet.git</connection>
         <developerConnection>scm:git:git@github.com:UW-Madison-DoIT/FeedbackPortlet.git</developerConnection>
         <url>https://github.com/UW-Madison-DoIT/FeedbackPortlet</url>
         <tag>HEAD</tag>
     </scm>
-    
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -54,7 +53,7 @@
             <artifactId>commons-logging</artifactId>
             <scope>compile</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
@@ -66,13 +65,13 @@
             <artifactId>jstl</artifactId>
             <scope>compile</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
             <scope>compile</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc-portlet</artifactId>
@@ -84,16 +83,16 @@
             <artifactId>standard</artifactId>
             <scope>compile</scope>
         </dependency>
-        
+
 
         <!-- ===== Runtime Dependencies ================================== -->
-        
+
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <scope>runtime</scope>
         </dependency>
-        
+
         <!-- ===== Provided Dependencies ================================== -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -132,7 +131,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    
+
     <dependencyManagement>
         <dependencies>
             <dependency>
